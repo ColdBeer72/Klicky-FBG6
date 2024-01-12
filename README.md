@@ -9,6 +9,13 @@ This design includes four parts:
 - **Dock-Support** (attached to the chamber fan)
 - A new **Back-Side** of the printer head box to replace the stock one, and where Probe is attached when needed.
 
+**Document Index**
+
+- [Printing Settings](#printing-settings)
+- [Material needed](#material-needed)
+  - [Tools needed](#tools-needed)
+- [Assembly](#assembly)
+
 ## Printing settings
 
 I used ABS (Sunlu Gold) for printing, 0.4mmm nozzle.
@@ -17,9 +24,7 @@ I used ABS (Sunlu Gold) for printing, 0.4mmm nozzle.
 - 25% infill sparse density (I prefer Gyroid type)
 - Brim just if you need it
 
-## Preparation
-
-### Material needed
+## Material needed
 **Back-Side**
 - 2 x M3 Brass Insert Nuts Length 5-6mm Outer Diameter 4-4.5mm
 - 3 x round magnet 5x5mm
