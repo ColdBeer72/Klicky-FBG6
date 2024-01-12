@@ -15,6 +15,7 @@ This design includes four parts:
 - [Material needed](#material-needed)
   - [Tools needed](#tools-needed)
 - [Assembly](#assembly)
+  - [Preparation](/preparation)
 
 ## Printing settings
 
@@ -51,8 +52,6 @@ I used ABS (Sunlu Gold) for printing, 0.4mmm nozzle.
 - Iron Solder (to install the insert nuts and solder the wires if you reuse an old connector to the motherboard)
 
 ## Assembly
-
-
 
 ### Preparation
 
@@ -92,6 +91,10 @@ Then, you could install it in the printer head passing the wires through the hol
 [Image of the probe](/pics/photo_2024-01-12_18-46-14B.jpg)
 
 First, you should install the microswitch in its place and fix it with the screws. Then you should put three magnets which will go upside, an easy way is to attach three magnets to the magnets installed yet on the Back-Side and push the Klicky-Probe over them, this will ensure they are right oriented. First, to secure them, it should be better to put a drop of glue on the holes.
+
+It's required that the outer legs of the microswitch have good contact with the magnets.
+
+[switch-magnet contact](https://github.com/Chiffa-C3/FBG6-Condor/blob/main/Assembly/PIC/pic10.png)
 
 In this way, the swich system should work, and you could test it: with a multitester with continuity measurement, you could check there is continuity between A and B magnets, but if you push the switch, continuity is loosed.
 
