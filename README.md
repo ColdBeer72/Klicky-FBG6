@@ -21,23 +21,23 @@ I used ABS (Sunlu Gold) for printing, 0.4mmm nozzle.
 
 ### Material needed
 **Back-Side**
-2 x M3 Brass Insert Nuts Length 5-6mm Outer Diameter 4-4.5mm
-3 x round magnet 5x5mm
-2 x thin wire (less than 0.5mm) of around 1-1.5 meters
-1 x XH2.54 3 pin connector to connection to the motherboard with 2 female pins or reuse an older sensor cable, or put 2 female dupont connectors to the motherboard side)
+- 2 x M3 Brass Insert Nuts Length 5-6mm Outer Diameter 4-4.5mm
+- 3 x round magnet 5x5mm
+- 2 x thin wire (less than 0.5mm) of around 1-1.5 meters
+- 1 x XH2.54 3 pin connector to connection to the motherboard with 2 female pins or reuse an older sensor cable, or put 2 female dupont connectors to the motherboard side)
 
 **Dock-Support**
-2 x M3 Brass Insert Nuts Length 4-5mm Outer Diameter 4-4.5mm
-1 x round magnet 5x5mm
-4 x M3 hex head bolts 14-16mm length to replace the fan bolts
+- 2 x M3 Brass Insert Nuts Length 4-5mm Outer Diameter 4-4.5mm
+- 1 x round magnet 5x5mm
+- 4 x M3 hex head bolts 14-16mm length to replace the fan bolts
 
 **Klicky-Dock**
-2 x M3x20mm screws (hex or round head)
+- 2 x M3x20mm screws (hex or round head)
 
 **Klicky-Probe**
-2 x M2 hex self-tapping bolts length 6-8mm
-4 x round magnet 5x5mm
-1 x microswitch (D2F) recommended or a [cheap](https://www.aliexpress.com/item/4001033375208.html?spm=a2g0o.order_list.order_list_main.17.319318023T0rvD) alternative
+- 2 x M2 hex self-tapping bolts length 6-8mm
+- 4 x round magnet 5x5mm
+- 1 x microswitch (D2F) recommended or a [cheap](https://www.aliexpress.com/item/4001033375208.html?spm=a2g0o.order_list.order_list_main.17.319318023T0rvD) alternative
 
 ### Tools needed
 - Hex head screwdriver set
