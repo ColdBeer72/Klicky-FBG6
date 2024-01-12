@@ -3,21 +3,17 @@ Klicky endstop for Flying Bear Ghost 6
 
 Based on the [Condor Head for FBG6](https://github.com/Chiffa-C3/FBG6-Condor-C3) by [Chiffa](https://github.com/Chiffa-C3) which is based on the well-knopwn [Klicky-Probe by Jlas1](https://github.com/jlas1/Klicky-Probe). It gives Flying Bear Ghost 6 standard (stock) printer head klicky-probe support.
 
+![Final Result](/pics/FinalResult.jpg)
+
 This design includes four parts:
 - **Klicky-Probe** (which jumps from the printer head to the dock and viceversa)
 - **Klicky-Dock** (the part where the probe usually remains. The Dock is attached to the dock-support)
 - **Dock-Support** (attached to the chamber fan)
 - A new **Back-Side** of the printer head box to replace the stock one, and where Probe is attached when needed.
 
-**Document Index**
-
-- [Printing Settings](#printing-settings)
-- [Material needed](#material-needed)
-  - [Tools needed](#tools-needed)
-- [Assembly](#assembly)
-  - [Preparation](/preparation)
-
 ## Printing settings
+
+![Printing Bed](/pics/PrintBed.png)
 
 I used ABS (Sunlu Gold) for printing, 0.4mmm nozzle.
 - Layer Height 0.12mm (probably 0.20mm will work right too)
@@ -53,8 +49,6 @@ I used ABS (Sunlu Gold) for printing, 0.4mmm nozzle.
 
 ## Assembly
 
-### Preparation
-
 ### Install the insert nuts
 
 Use an iron solder for this job, with heated head, push lightly the inserts into the corresponding holes. When a little less than 1mm is missing, push the inserts with a flat piece of metal to give a perfect finish. You'll need to do this job just 4 times (in Back-Side and Dock-Support), so keep calm and do it right.
@@ -69,7 +63,7 @@ Insert one magnet in the rear of the Klicky-Dock (here you won't need to glue it
 This is the piece finished:
 ![Dock-Spics/photo_2024-01-12_18-46-01.jpg
 
-### Back-Side
+### Install the Back-Side
 First unscrew the stock backside (2 M3 bolts that you could reuse for installing the new one later).
 
 ![Image of the Klicky Holder](/pics/Klicky-Holder-Poles.png)
@@ -87,15 +81,50 @@ Pass the wires through the center holes up-down direction, strip ~10mm on each w
 
 Then, you could install it in the printer head passing the wires through the hole (like the [picture](/pics/photo_2024-01-12_18-45-59.jpg)), take them up to the motherboard and connect it to the Z-MAX connector (PC4).
 
-### Klicky-Probe
-[Image of the probe](/pics/photo_2024-01-12_18-46-14B.jpg)
+### Mount the Klicky-Probe
+![Image of the probe](/pics/photo_2024-01-12_18-46-14B.jpg)
 
 First, you should install the microswitch in its place and fix it with the screws. Then you should put three magnets which will go upside, an easy way is to attach three magnets to the magnets installed yet on the Back-Side and push the Klicky-Probe over them, this will ensure they are right oriented. First, to secure them, it should be better to put a drop of glue on the holes.
 
 It's required that the outer legs of the microswitch have good contact with the magnets.
 
-[switch-magnet contact](https://github.com/Chiffa-C3/FBG6-Condor/blob/main/Assembly/PIC/pic10.png)
+![switch-magnet contact](https://github.com/Chiffa-C3/FBG6-Condor/blob/main/Assembly/PIC/pic10.png)
 
 In this way, the swich system should work, and you could test it: with a multitester with continuity measurement, you could check there is continuity between A and B magnets, but if you push the switch, continuity is loosed.
 
 You now could put another drop of glue in the back side hole and put the fouth magnet (as it should be related to the one on the Dock, you could link a magnet in the Dock and push the Probe over it to install the magnet).
+
+### End of Assembly part
+
+Now, you just need to put the Probe on its dock and start with the software configuration.
+
+## Software Configuration
+
+This manual is intended to work just with **Klipper** so, if somebody wants to write a Marlin manual, it'll be welcome and I could publish here.
+
+###Klipper files
+We use original klipper macros from jlas1 you could find [here](https://github.com/jlas1/Klicky-Probe/tree/main/Klipper_macros), or downlad directly all of them through [his zip file ](https://github.com/jlas1/Klicky-Probe/tree/main/Klipper_macros/Klipper_macros.zip).
+
+An easy way to install them is connecting through ssh, change directory to the config folder from our printer and:
+
+```
+mkdir klicky
+cd klicky
+wget https://raw.githubusercontent.com/jlas1/Klicky-Probe/main/Klipper_macros/Klipper_macros.zip
+unzip Klipper_macros.zip
+```
+
+There are a few files there, but the more important is klicky-probe.cfg from which we will indicate Klipper which of them will load. For my configuration, I uncommented variables, macros, bed-mesh-calibrate and screws-tilt-calculate:
+
+```
+#Simple way to include all the various klicky macros and configurations
+# the current home for this configuration is https://github.com/jlas1/Klicky-Probe, please check it
+
+#[include ./klicky-specific.cfg]                #place to put other configurations specific to your printer
+[include ./klicky-variables.cfg]                #Required
+[include ./klicky-macros.cfg]                   #Required
+[include ./klicky-bed-mesh-calibrate.cfg]      #bed mesh, requires klipper configuration
+[include ./klicky-screws-tilt-calculate.cfg]   #help adjust bed screws automatically
+#[include ./klicky-quad-gantry-level.cfg]       #level 4 Z motors
+#[include ./klicky-z-tilt-adjust.cfg]           #level 2 or 3 Z motors
+```
