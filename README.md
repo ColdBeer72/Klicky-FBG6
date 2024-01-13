@@ -3,6 +3,8 @@ Klicky endstop for **Flying Bear Ghost 6**
 
 Based on the [Condor Head for FBG6](https://github.com/Chiffa-C3/FBG6-Condor-C3) by [Chiffa](https://github.com/Chiffa-C3) which is based on the well-knopwn [Klicky-Probe by Jlas1](https://github.com/jlas1/Klicky-Probe). It gives Flying Bear Ghost 6 standard (stock) printer head klicky-probe support.
 
+I took the back plate from the excellent job from [Ryoko](https://www.thingiverse.com/thing:5744744) (originally for 3d-touch) and modified it deeply to achieve the results needed.
+
 ![Final Result](/pics/FinalResult.jpg)
 
 This design includes four parts:
