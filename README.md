@@ -239,4 +239,7 @@ After that, there are a few useful commands:
 - **BED_MESH_CALIBRATE** ===> to probe the bed with the points defined and make a mesh to print better.
 
 See the klicky in action with the Flying Bear Ghost 6:
-https://github.com/ColdBeer72/Klicky-FBG6/assets/78320296/9225a440-2dc4-4805-af92-6a5266431203
+
+
+https://github.com/ColdBeer72/Klicky-FBG6/assets/78320296/a434295b-317d-4c4f-b1c3-35d6b134ba49
+
