@@ -1,5 +1,5 @@
 # Klicky-FBG6
-Klicky endstop for Flying Bear Ghost 6
+Klicky endstop for **Flying Bear Ghost 6**
 
 Based on the [Condor Head for FBG6](https://github.com/Chiffa-C3/FBG6-Condor-C3) by [Chiffa](https://github.com/Chiffa-C3) which is based on the well-knopwn [Klicky-Probe by Jlas1](https://github.com/jlas1/Klicky-Probe). It gives Flying Bear Ghost 6 standard (stock) printer head klicky-probe support.
 
@@ -10,6 +10,8 @@ This design includes four parts:
 - **Klicky-Dock** (the part where the probe usually remains. The Dock is attached to the dock-support)
 - **Dock-Support** (attached to the chamber fan)
 - A new **Back-Side** of the printer head box to replace the stock one, and where Probe is attached when needed.
+
+You could download STL or STEP files from their respective folders. And with STEP files, if you know how, you could make modifications to my design if you wish.
 
 ## Printing settings
 
@@ -96,27 +98,29 @@ You now could put another drop of glue in the back side hole and put the fouth m
 
 ### End of Assembly part
 
-Now, you just need to put the Probe on its dock and start with the software configuration.
+Now, you just need to put the Probe on its dock, give a few clockwise turns to the old Z endstop screw to download it and prevent it to touch the old switch, and start with the software configuration.
 
 ## Software Configuration
 
 This manual is intended to work just with **Klipper** so, if somebody wants to write a Marlin manual, it'll be welcome and I could publish here.
 
 ###Klipper files
-We use original klipper macros from jlas1 you could find [here](https://github.com/jlas1/Klicky-Probe/tree/main/Klipper_macros), or downlad directly all of them through [his zip file ](https://github.com/jlas1/Klicky-Probe/tree/main/Klipper_macros/Klipper_macros.zip).
+
+We use original klipper macros from jlas1 that you could find [here](https://github.com/jlas1/Klicky-Probe/tree/main/Klipper_macros), or downlad directly all of them together through [his zip file ](https://github.com/jlas1/Klicky-Probe/tree/main/Klipper_macros/Klipper_macros.zip).
 
 An easy way to install them is connecting through ssh, change directory to the config folder from our printer and:
 
-```
+```ShellSession
 mkdir klicky
 cd klicky
 wget https://raw.githubusercontent.com/jlas1/Klicky-Probe/main/Klipper_macros/Klipper_macros.zip
 unzip Klipper_macros.zip
 ```
+In this way, we have all the klicky related files together in a folder, making a cleaner installation.
 
-There are a few files there, but the more important is klicky-probe.cfg from which we will indicate Klipper which of them will load. For my configuration, I uncommented variables, macros, bed-mesh-calibrate and screws-tilt-calculate:
+There are a few files there, but the more important is **klicky-probe.cfg** from which we will indicate Klipper which of them will load. For my configuration, I uncommented variables, macros, bed-mesh-calibrate and screws-tilt-calculate:
 
-```
+```python
 #Simple way to include all the various klicky macros and configurations
 # the current home for this configuration is https://github.com/jlas1/Klicky-Probe, please check it
 
@@ -128,3 +132,111 @@ There are a few files there, but the more important is klicky-probe.cfg from whi
 #[include ./klicky-quad-gantry-level.cfg]       #level 4 Z motors
 #[include ./klicky-z-tilt-adjust.cfg]           #level 2 or 3 Z motors
 ```
+Or you could just replace the original file [with mine](/cfg/klicky-probe.cfg).
+
+
+Now, we will edit the file **klicky-variables.cfg** and change these variables to adapt it to our printer:
+
+```python
+variable_max_bed_y:            200
+variable_max_bed_x:            250
+variable_z_endstop_x:         0
+variable_z_endstop_y:         0
+variable_docklocation_x:      168
+variable_docklocation_y:      215
+variable_docklocation_z:      -128
+Variable_dockmove_x:            30
+Variable_attachmove_x:           0
+Variable_attachmove_y:          17
+variable_park_toolhead:       True
+variable_parkposition_x:         1
+variable_parkposition_y:         1
+variable_parkposition_z:        10
+variable_home_backoff_x:     125.5
+variable_home_backoff_y:      70.5
+```
+Or you could just replace the original file [with mine](/cfg/klicky-variables.cfg).
+
+Now, you could upload my [klicky.cfg](/cfg/klicky.cfg) file to the same klicky folder. It contains the configuration for out klicky probe:
+```python
+[probe]
+pin: ^PC4
+x_offset: 2.5
+y_offset: 35.5
+speed: 5.0
+lift_speed: 15.0
+samples: 3
+sample_retract_dist: 1.0
+samples_result: average
+samples_tolerance: 0.1
+samples_tolerance_retries: 6
+
+[bed_mesh]
+speed: 100
+horizontal_move_z: 5
+#mesh_min: 7.5, 35
+mesh_min: 12.5,45.5
+#mesh_max: 240, 200
+mesh_max: 246.0,205.0
+probe_count: 6,5
+mesh_pps: 2, 2
+algorithm: bicubic
+fade_start: 1
+fade_end: 10
+
+[screws_tilt_adjust]                     
+screw4: 25, 1
+screw4_name: Left-Front
+screw3: 225, 1
+screw3_name: Right-Front
+screw2: 225, 145
+screw2_name: Right-Back
+screw1: 25, 145
+screw1_name: Left-Back
+speed: 200
+screw_thread: CW-M4
+horizontal_move_z: 5
+```
+As you could see, I defined a **bed_mesh** section to could calibrate the printer hotbed, and a **screw_tilt_adjust** for helping us to adjust the bed screws. It's configured using the max distance I could achieve with the nozzle in my printer (it shouldn't change in others FBG6 printers). To achieve all those points, you should change our **printer.cfg ** with the data in their respective sections:
+```python
+[stepper_x]
+...
+position_max: 256
+
+[stepper_y]
+...
+position_max: 215
+
+[stepper_z]
+...
+endstop_pin: probe:z_virtual_endstop
+```
+See the last change is to let our new klicky probe take control of the limit in Z height,
+
+Finally, we should edit our **printer.cfg** file again and activate our files for the changes to take effect. Better after every other **include** in the file:
+```python
+[include klicky/klicky.cfg]
+[include klicky/klicky-probe.cfg]
+```
+Note that the last include will make everyother needed files (macros, bed-mesh-calibrate and screws-tilt-adjust) been imported too.
+
+We should add one line for the probe to let it change later at calibration:
+
+```python
+[probe]
+z_offset = 2.380
+```
+
+After restarting Klipper, we should start doing some tests from the klicky macros in the klipper console with these simply commands:
+**ATTACH_PROBE**
+**DOCK_PROBE**
+
+If both commands worked right, we could **home** our head wishing everything will be all right.
+
+After that, there are a few useful commands:
+**PROBE_ACCURACY**     ===> to test the accuracy of our probe, look at the **range** exit. For our machines, a range of 0.0025 is acceptable.
+**PROBE_CALIBRATE**    ===> to calibrate the distance between nozzle and klicky probe, just usual
+**BED_MESH_CALIBRATE** ===> to probe the bed with the points defined and make a mesh to print better.
+
+See the klicky in action:
+https://github.com/ColdBeer72/Klicky-FBG6/assets/78320296/9225a440-2dc4-4805-af92-6a5266431203
