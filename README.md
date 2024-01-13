@@ -187,14 +187,14 @@ fade_start: 1
 fade_end: 10
 
 [screws_tilt_adjust]                     
-screw4: 25, 1
-screw4_name: Left-Front
-screw3: 225, 1
-screw3_name: Right-Front
-screw2: 225, 145
-screw2_name: Right-Back
-screw1: 25, 145
-screw1_name: Left-Back
+screw1: 25, 1
+screw1_name: Left-Front
+screw2: 225, 1
+screw2_name: Right-Front
+screw3: 225, 145
+screw3_name: Right-Back
+screw4: 25, 145
+screw4_name: Left-Back
 speed: 200
 screw_thread: CW-M4
 horizontal_move_z: 5
