@@ -228,15 +228,15 @@ z_offset = 2.380
 ```
 
 After restarting Klipper, we should start doing some tests from the klicky macros in the klipper console with these simply commands:
-**ATTACH_PROBE**
-**DOCK_PROBE**
+- **ATTACH_PROBE**
+- **DOCK_PROBE**
 
 If both commands worked right, we could **home** our head wishing everything will be all right.
 
 After that, there are a few useful commands:
-**PROBE_ACCURACY**     ===> to test the accuracy of our probe, look at the **range** exit. For our machines, a range of 0.0025 is acceptable.
-**PROBE_CALIBRATE**    ===> to calibrate the distance between nozzle and klicky probe, just usual
-**BED_MESH_CALIBRATE** ===> to probe the bed with the points defined and make a mesh to print better.
+- **PROBE_ACCURACY**     ===> to test the accuracy of our probe, look at the **range** exit. For our machines, a range of 0.0025 is acceptable.
+- **PROBE_CALIBRATE**    ===> to calibrate the distance between nozzle and klicky probe, just usual
+- **BED_MESH_CALIBRATE** ===> to probe the bed with the points defined and make a mesh to print better.
 
-See the klicky in action:
+See the klicky in action with the Flying Bear Ghost 6:
 https://github.com/ColdBeer72/Klicky-FBG6/assets/78320296/9225a440-2dc4-4805-af92-6a5266431203
